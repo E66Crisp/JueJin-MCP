@@ -7,7 +7,7 @@ import (
 	goMcp "github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
-func SetupRoutes(app *App) {
+func setupRoutes(app *App) {
 	mcpHandler := goMcp.NewStreamableHTTPHandler(func(r *http.Request) *goMcp.Server {
 		return app.MCP
 	}, &goMcp.StreamableHTTPOptions{

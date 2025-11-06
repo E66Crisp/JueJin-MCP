@@ -13,7 +13,7 @@ type App struct {
 	FiberApp *fiber.App
 }
 
-func NewApp(app *fiber.App) *App {
+func newApp(app *fiber.App) *App {
 	return &App{
 		JueJin:   juejin.NewJueJin(),
 		MCP:      mcp.InitMCP(),

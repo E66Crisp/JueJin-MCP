@@ -7,18 +7,18 @@ import (
 	"github.com/unomcp/JueJin-MCP/middleware"
 )
 
-func Start(port string) {
-	app := NewApp(fiber.New(fiber.Config{
+func start(port string) {
+	app := newApp(fiber.New(fiber.Config{
 		DisableStartupMessage: false,
 	}))
 
 	app.FiberApp.Use(middleware.Cros())
 
-	SetupRoutes(app)
+	setupRoutes(app)
 
 	log.Fatal(app.FiberApp.Listen(port))
 }
 
 func main() {
-	Start(":10086")
+	start(":10086")
 }
