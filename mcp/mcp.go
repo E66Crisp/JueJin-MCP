@@ -1,25 +1,13 @@
 package mcp
 
 import (
-	"context"
-
 	goMcp "github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
-type Input struct {
-	Name string `json:"name" jsonschema:"the name of the person to greet"`
-}
+type MCP struct{}
 
-type Output struct {
-	Greeting string `json:"greeting" jsonschema:"the greeting to tell to the user"`
-}
-
-func SayHi(ctx context.Context, req *goMcp.CallToolRequest, input Input) (
-	*goMcp.CallToolResult,
-	Output,
-	error,
-) {
-	return nil, Output{Greeting: "Hi " + input.Name}, nil
+func NewMCP() *MCP {
+	return &MCP{}
 }
 
 func InitMCP() *goMcp.Server {
@@ -28,16 +16,10 @@ func InitMCP() *goMcp.Server {
 		Version: "0.0.1",
 	}, nil)
 
-	// 添加工具
-	goMcp.AddTool(server, &goMcp.Tool{
-		Name:        "greet",
-		Description: "say hi",
-	}, SayHi)
-
 	// 添加登录状态工具
 	goMcp.AddTool(server, &goMcp.Tool{
-		Name:        "loginStatus",
-		Description: "get login status",
+		Name:        "login status",
+		Description: "获取登录状态",
 	}, LoginStatus)
 	return server
 }
