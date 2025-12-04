@@ -2,7 +2,6 @@ package juejin
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	"github.com/go-rod/rod"
@@ -14,13 +13,24 @@ type PublishContent struct {
 }
 
 var (
-	PUBLISH_URL = "https://juejin.cn/editor/drafts/new?v=2"
+	PUBLISH_URL   = "https://juejin.cn/editor/drafts/new?v=2"
+	TITLE_INPUT   = `//*[@id="juejin-web-editor"]/div[2]/div/header/input`
+	CONTENT_INPUT = `//*[@id="juejin-web-editor"]/div[2]/div/div/div/div[2]/div[1]/div`
 )
 
 func Publish(page *rod.Page, ctx context.Context, content PublishContent) error {
-	fmt.Println("publish", content)
 	p := page.Context(ctx)
 	p.MustNavigate(PUBLISH_URL).MustWaitLoad()
+
+	titleInput := p.MustElementX(TITLE_INPUT)
+	titleInput.MustInput(content.Title)
+
+	cm := page.MustElementX(CONTENT_INPUT)
+	cm.Eval(`
+		(...args) => {
+			return this.CodeMirror.setValue(args[0])
+		}
+	`, content.Content)
 
 	time.Sleep(10 * time.Second)
 	return nil
