@@ -1,8 +1,23 @@
+# MCP for JueJin
 
+<p align="center">
+  <strong>JueJin-MCP是一个能让AI生成的文章自动发布到掘金的工具</strong>
+</p>
 
-<h4 style="text-align:center;">JueJin MCP</h4>
+### 开始使用
 
-### Directory Tree
+```json
+{
+  "mcpServers": {
+    "juejin-mcp": {
+      "type":"sse",
+      "url": "http://localhost:10086/mcp"
+    }
+  }
+}
+```
+
+### 项目结构
 ```bash
 root/
 ├── main.go               # 🚀 应用入口与引导程序
