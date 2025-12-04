@@ -37,7 +37,10 @@ func publishTool(ctx context.Context, _req *goMcp.CallToolRequest, _ any) (
 	p := b.MustPage()
 	defer p.Close()
 
-	if err := juejin.Publish(p, ctx); err != nil {
+	if err := juejin.Publish(p, ctx, juejin.PublishContent{
+		Title:   "Test Title",
+		Content: "## Test Content",
+	}); err != nil {
 		return nil, nil, err
 	}
 
