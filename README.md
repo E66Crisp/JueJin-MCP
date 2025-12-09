@@ -17,6 +17,7 @@
 
 ### 🌟 功能特性
 - [x] 登录
+- [x] 持久化登录
 - [x] 文章写入到草稿箱
 - [ ] 发布
   - [ ] 支持分类
@@ -30,6 +31,17 @@
 
 
 ### 🛠️ 使用示例
+
+目前需要自己启动 `mcp inspector` 来进行手动登录，再运行 `juejin-mcp` 服务。
+
+```bash
+# 启动 mcp inspector
+npx @modelcontextprotocol/inspector
+# 下一步
+go run .
+```
+
+完成以上操作后，再使用对应的AI工具来做文章生成，通过提示词描述 `使用juejin-mcp将文章发布到掘金` 完成自动化。
 
 <details>
 <summary><b>在 Cursor 使用</b></summary>
